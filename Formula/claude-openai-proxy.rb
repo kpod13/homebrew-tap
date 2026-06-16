@@ -2,28 +2,28 @@
 class ClaudeOpenaiProxy < Formula
   desc "OpenAI-compatible HTTP proxy backed by the Claude CLI"
   homepage "https://github.com/kpod13/claude-openai-proxy"
-  version "0.1.6"
+  version "0.1.7"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.6/claude-openai-proxy_0.1.6_darwin_arm64.tar.gz"
-      sha256 "d4bf51b883ff102ef04bdce93b43bd9eab78f4f52ba338e30390afc2a28a389e"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.7/claude-openai-proxy_0.1.7_darwin_arm64.tar.gz"
+      sha256 "3fa881ab052dc410feab9d75761d58240312fdb0f433906c0b1807be620b2ec8"
     end
     on_intel do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.6/claude-openai-proxy_0.1.6_darwin_amd64.tar.gz"
-      sha256 "b2420304521f803fd5e4faff9247914cbabb921bebab9ecec15c166cfc218297"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.7/claude-openai-proxy_0.1.7_darwin_amd64.tar.gz"
+      sha256 "d8cdc7143b0e5da36f045a9d0b4124828e0be6eb9a9646fbb4b8c647745efa31"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.6/claude-openai-proxy_0.1.6_linux_arm64.tar.gz"
-      sha256 "09633ffb57eee48ecb0b32cb4e4f0ca92e7188c97673192ec86742f53b527475"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.7/claude-openai-proxy_0.1.7_linux_arm64.tar.gz"
+      sha256 "97afd1a4fb8b3e430cdc3f167c4a841a02c3b40cd86542ea350840a3e5e874f1"
     end
     on_intel do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.6/claude-openai-proxy_0.1.6_linux_amd64.tar.gz"
-      sha256 "31c95001a22d523d62e2eb4fe51a113e8585c5c2b90128a3be0e2edb0d622d61"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.7/claude-openai-proxy_0.1.7_linux_amd64.tar.gz"
+      sha256 "ec6da4f78dc5cae92d97b69319e247bfe510c16ec4be4ac26e75bfb6e6f9c389"
     end
   end
 
