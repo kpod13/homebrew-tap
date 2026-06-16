@@ -2,33 +2,47 @@
 class ClaudeOpenaiProxy < Formula
   desc "OpenAI-compatible HTTP proxy backed by the Claude CLI"
   homepage "https://github.com/kpod13/claude-openai-proxy"
-  version "0.1.4"
+  version "0.1.5"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.4/claude-openai-proxy_0.1.4_darwin_arm64.tar.gz"
-      sha256 "2e1b9c3366e1c99bec023c19232e561e3cf2ddb06973bed4e9bae4bc376d9417"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.5/claude-openai-proxy_0.1.5_darwin_arm64.tar.gz"
+      sha256 "e87319f1e72211cb3d384a63b9b5672ef7a97272ac9b28eb207c0725128b2f4b"
     end
     on_intel do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.4/claude-openai-proxy_0.1.4_darwin_amd64.tar.gz"
-      sha256 "5135a60c7e9402cbc67b4eb361f3558bac94b6b42ede16db2b924e42d40e7842"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.5/claude-openai-proxy_0.1.5_darwin_amd64.tar.gz"
+      sha256 "0974d13e1758254453177a28719380d1a2f846553af212cc92bd66db45eb5c0a"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.4/claude-openai-proxy_0.1.4_linux_arm64.tar.gz"
-      sha256 "c89600b1b2bf575d5e841f6d205c305303ed3a3de621c93a3d45e98f18493046"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.5/claude-openai-proxy_0.1.5_linux_arm64.tar.gz"
+      sha256 "8c55b88506cf528e09860b26e6dd0d30b488bef5636d515aea7d2dd8f100c243"
     end
     on_intel do
-      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.4/claude-openai-proxy_0.1.4_linux_amd64.tar.gz"
-      sha256 "dedbe81f2df0ce58e72afd1f2f1bf82a3db11b4fd88006868e6d9f99cf98ed57"
+      url "https://github.com/kpod13/claude-openai-proxy/releases/download/v0.1.5/claude-openai-proxy_0.1.5_linux_amd64.tar.gz"
+      sha256 "31675e2cb754f80328c1c76adc67bfb0dbdde07f42ba8f8bf1f48c85586f070d"
     end
   end
 
   def install
     bin.install "claude-openai-proxy"
+  end
+
+  # Restart a running autostart agent (installed via `claude-openai-proxy
+  # autorun install`) so an upgrade picks up the new binary. No-op when no
+  # agent is installed. quiet_system never raises, so a failed restart (e.g.
+  # brew run outside the user's GUI session) won't abort the upgrade.
+  def post_install
+    if OS.mac?
+      target = "gui/#{Process.uid}/claude-openai-proxy"
+      quiet_system("launchctl", "kickstart", "-k", target) if quiet_system("launchctl", "print", target)
+    elsif OS.linux?
+      # try-restart is a no-op when the unit is not active.
+      quiet_system("systemctl", "--user", "try-restart", "claude-openai-proxy")
+    end
   end
 
   test do
